@@ -4,6 +4,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,10 +44,32 @@ public class MainActivity extends AppCompatActivity {
                 String opseleccionado = (String) listView.getAdapter().getItem(position);
 
                 Toast.makeText(MainActivity.this,opseleccionado,Toast.LENGTH_SHORT).show();
+                drawerLayout.closeDrawer(listView);
             }
         });
 
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //id de la opcion de menu que le haya dado click
+        int id=item.getItemId();
+
+
+
+        if (id==android.R.id.home)
+        {
+            if (drawerLayout.isDrawerOpen(listView))
+            {
+                drawerLayout.closeDrawer(listView);
+            }
+            else{
+                    drawerLayout.openDrawer(listView);
+                }
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
